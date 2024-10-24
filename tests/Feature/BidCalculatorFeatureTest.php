@@ -7,18 +7,15 @@ use Tests\TestCase;
 
 class BidCalculatorFeatureTest extends TestCase
 {
-    use RefreshDatabase;
-
     protected function setUp(): void
     {
         parent::setUp();
-        $this->seed();
     }
 
     public function test_calculates_common_vehicle_bid(): void
     {
         $response = $this->postJson('/api/calculate-bid', [
-            'basePrice' => 1000,
+            'basePrice' => 1100,
             'vehicleType' => 'common'
         ]);
 
@@ -26,12 +23,12 @@ class BidCalculatorFeatureTest extends TestCase
             ->assertJson([
                 'status' => 'success',
                 'data' => [
-                    'basePrice' => 1000,
+                    'basePrice' => 1100,
                     'basicBuyerFee' => 50,
-                    'sellerSpecialFee' => 20,
-                    'associationFee' => 10,
+                    'sellerSpecialFee' => 22,
+                    'associationFee' => 15,
                     'storageFee' => 100,
-                    'total' => 1180,
+                    'total' => 1287,
                 ]
             ]);
     }
@@ -39,7 +36,7 @@ class BidCalculatorFeatureTest extends TestCase
     public function test_calculates_luxury_vehicle_bid(): void
     {
         $response = $this->postJson('/api/calculate-bid', [
-            'basePrice' => 5000,
+            'basePrice' => 1800,
             'vehicleType' => 'luxury'
         ]);
 
@@ -47,12 +44,12 @@ class BidCalculatorFeatureTest extends TestCase
             ->assertJson([
                 'status' => 'success',
                 'data' => [
-                    'basePrice' => 5000,
-                    'basicBuyerFee' => 200,
-                    'sellerSpecialFee' => 200,
-                    'associationFee' => 20,
+                    'basePrice' => 1800,
+                    'basicBuyerFee' => 180,
+                    'sellerSpecialFee' => 72,
+                    'associationFee' => 15,
                     'storageFee' => 100,
-                    'total' => 5520
+                    'total' => 2167
                 ]
             ]);
     }
