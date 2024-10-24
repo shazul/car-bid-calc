@@ -1,5 +1,9 @@
 # Car Bid Calculation Tool
 
+Bonjour à toute l'équipe,  
+Je suis ravi de soumettre cette solution dans le cadre du processus de sélection. Ayant vécu au Québec pendant plusieurs années, j'espère que ce projet répondra à vos attentes.
+
+
 This is a simple web application for calculating the total price of a vehicle at an auction, including various fees based on the vehicle type and base price.
 
 ## Technologies
